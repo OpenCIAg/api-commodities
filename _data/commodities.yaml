@@ -1,0 +1,160 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a collaborative agricultere api.\n"
+  version: "2018-07-04T12:02:10Z"
+  title: "sacp"
+  termsOfService: "http://www.ciag.org.br"
+  contact:
+    email: "contato@ciag.org.br"
+host: "6l451mm423.execute-api.us-east-1.amazonaws.com"
+basePath: "/dev"
+tags:
+- name: "commodities"
+  description: "Everything about commodities"
+schemes:
+- "https"
+paths:
+  /commodities:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "date_start"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "date_end"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sub_category"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "product"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/CommoditiesValidator"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+definitions:
+  Empty:
+    type: "object"
+    title: "Empty Schema"
+  CommoditiesValidator:
+    title: "CommoditiesValidator"
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        type:
+          type: "string"
+        category:
+          type: "string"
+        sub_category:
+          type: "string"
+        source:
+          type: "string"
+        url:
+          type: "string"
+          format: "uri"
+        date:
+          type: "string"
+          format: "date-time"
+        created_at:
+          type: "string"
+          format: "date-time"
+        document:
+          type: "object"
+          properties:
+            product:
+              type: "string"
+            sub_produto:
+              type: "string"
+            value:
+              type: "number"
+            unity:
+              type: "string"
+            measurement:
+              type: "string"
+            country:
+              type: "string"
+            region:
+              type: "string"
+            type_data:
+              type: "string"
+            value_maximum:
+              type: "number"
+            value_minimum:
+              type: "number"
+            value_medium:
+              type: "number"
+            description:
+              type: "string"
+            origin:
+              type: "string"
+            market_status:
+              type: "string"
+            maximum_distribution_price:
+              type: "number"
+            minimum_distribution_price:
+              type: "number"
+            average_distribution_price:
+              type: "number"
+            maximum_resale_price:
+              type: "number"
+            minimun_resale_price:
+              type: "number"
+            average_resale_price:
+              type: "number"
+            state:
+              type: "string"
+            city:
+              type: "string"
+            number_gas_stations:
+              type: "integer"
+            start_date:
+              type: "string"
+              format: "date-time"
+            end_date:
+              type: "string"
+              format: "date-time"
+            buy_value:
+              type: "number"
+            sell_value:
+              type: "number"
+      required:
+      - "category"
+      - "created_at"
+      - "date"
+      - "document"
+      - "source"
+      - "sub_category"
+      - "type"
+      - "url"
